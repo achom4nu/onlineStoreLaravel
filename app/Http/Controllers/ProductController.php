@@ -47,8 +47,8 @@ class ProductController extends Controller
         
         $comment = Comment::all();
         $viewData["product"] = $product;
-        $viewData["comments"] = $comment;
-        
+        $viewData["comments"] = $comment; 
+
         return view('product.show')->with("viewData", $viewData);
     }
 

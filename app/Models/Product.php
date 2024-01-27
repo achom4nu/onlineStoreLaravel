@@ -109,16 +109,6 @@ class Product extends Model
         $this->attributes['category_id'] = $category_id;
     }
 
-    public function getCommentId()
-    {
-        return $this->attributes['comment_id'];
-    }
-
-    public function setCommentId($comment_id)
-    {
-        $this->attributes['comment_id'] = $comment_id;
-    }
-
     public function getUpdatedAt()
     {
         return $this->attributes['updated_at'];

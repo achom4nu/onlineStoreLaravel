@@ -61,7 +61,6 @@
           <option name='{{ $categoria->getId() }}' value="{{ $categoria->getId() }}">{{ $categoria->getName() }}</option>
           @endforeach
         </select>
-        <a href="{{ route('product.index') }}"></a>
       </div>
       <button type="submit" class="btn btn-primary">{{__('Edit')}}</button>
     </form>
