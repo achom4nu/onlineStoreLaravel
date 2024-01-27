@@ -25,6 +25,12 @@
           <a class="nav-link active" href="{{ route('product.index') }}">{{__('Products')}}</a>
           <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
           <a class="nav-link active" href="{{ route('home.about') }}">{{__('About')}}</a>
+          @guest 
+          @else
+          @if(Auth::user()->role == "admin")
+          <a class="nav-link active" style="color: gold;" href="{{ route('admin.home.index') }}">{{__('Administrattor Panel')}}</a>
+          @endif
+          @endguest
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
           @guest
           <a class="nav-link active" href="{{ route('login') }}">{{__('Login')}}</a>
