@@ -45,7 +45,7 @@ class ProductController extends Controller
         }
 
         
-        $comment = Comment::all();
+        $comment = Comment::where('product_id', $id)->get();
         $viewData["product"] = $product;
         $viewData["comments"] = $comment;
         

@@ -24,6 +24,7 @@ Route::get('/cart/delete', 'App\Http\Controllers\CartController@delete')->name("
 Route::post('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name("cart.add");
 
 Route::post('/product/comments', 'App\Http\Controllers\CommentController@store')->name('comment.store');
+Route::get('/comment/delete/{id}', 'App\Http\Controllers\CommentController@delete')->name("comment.delete");
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -35,7 +36,6 @@ Route::get('language/{locale}', function ($locale) {
 Route::middleware('auth')->group(function () {
     Route::get('/cart/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
     Route::get('/my-account/orders', 'App\Http\Controllers\MyAccountController@orders')->name("myaccount.orders");
-    Route::post('/comment/delete/{id}', 'App\Http\Controllers\CommentController@delete')->name("comment.delete");
 });
 
 Route::middleware('admin')->group(function () {

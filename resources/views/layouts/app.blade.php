@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,14 +9,14 @@
   <title>@yield('title')</title>
 
 </head>
+
 <body>
   <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
     <div class="container">
       @include('partials/language_switcher')
       <a class="navbar-brand" style="margin-left: 30px;" href="{{ route('home.index') }}">{{__('Online Store')}}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -31,8 +32,7 @@
           @else
           <a class="nav-link active" href="{{ route('myaccount.orders') }}">{{__('My Orders')}}</a>
           <form id="logout" action="{{ route('logout') }}" method="POST">
-            <a role="button" class="nav-link active"
-               onclick="document.getElementById('logout').submit();">{{__('Logout')}}</a>
+            <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">{{__('Logout')}}</a>
             @csrf
           </form>
           @endguest
@@ -56,31 +56,37 @@
     @yield('content')
   </div>
 
-  <!--@guest
-  <h3>{{__('Login or create an account to write a comment')}}</h3>
-  @else
-  <div class="container my-4">
-    @yield('comments')
-  </div>
-  @endguest-->
-
   <div class="container my-4">
     @yield('idioma')
   </div>
 
   <!-- footer -->
-  <div class="copyright py-4 text-center text-white" >
+  <div class="copyright py-4 text-center text-white">
     <div class="container">
       <small>
-        Copyright - <a class="text-reset fw-bold text-decoration-none" target="_blank"
-          href="https://twitter.com/danielgarax">
-          Manuel Guillén
-        </a>
+        Copyright -
+        <strong>Manuel Guillén</strong>
       </small>
     </div>
   </div>
   <!-- footer -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+  <script type="text/javascript">
+    tinymce.init({
+      selector: 'textarea#comment',
+          plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+          content_style: 'body { font-family: Lato; font-size:16px }'
+      });
   </script>
 </body>
+
 </html>

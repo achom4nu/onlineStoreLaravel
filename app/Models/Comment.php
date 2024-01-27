@@ -9,16 +9,18 @@ class Comment extends Model
 {
 
     protected $table='comments';
-    protected $fillable = ['username', 'comment', 'productId', 'userId'];
+    protected $fillable = ['username', 'comment', 'product_id', 'user_id'];
 
 
-    public static function validate($request)
+    /*public static function validate($request)
     {
         $request->validate([
             "username" => "required|max:255",
             "comment" => "required",
+            "user_id" => "required",
+            "product_id" => "required",
         ]);
-    }
+    }*/
 
 
     public function getId()

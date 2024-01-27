@@ -35,8 +35,10 @@
 </div>
 
 <!--                   COMENTARIOS                      -->
-@guest 
+@guest
 <h2>{{__('Login or create an account to write a comment')}}</h2>
+<a class="btn btn-primary" href="{{ route('login') }}">{{__('Login')}}</a>
+<a class="btn btn-primary" href="{{ route('register') }}">{{__('Register')}}</a>
 @else
 <section style="background-color: #d94125;">
   <div class="container my-5 py-5 text-dark">
@@ -67,11 +69,11 @@
                 <form action="{{ route('comment.store')}}" method="POST">
                   @csrf
                   <div class="form-outline">
-                    <textarea class="form-control" id="comment" rows="4"></textarea>
+                    <textarea class="form-control" class="comment" id="comment" name="comment" rows="4"></textarea>
                     <label class="form-label" for="textAreaExample">{{__('What is your view?')}}</label>
                   </div>
-                  <input type="hidden" name="userId" value="{{ Auth::id() }}">
-                  <input type="hidden" name="username" value="{{ Auth::user() }}">
+                  <!--<input type="hidden" name="userId" value="{{ Auth::id() }}">
+                  <input type="hidden" name="username" value="{{ Auth::user()->name }}">-->
                   <input type="hidden" name="productId" value="{{ $viewData['product']->getId() }}">
                   <div class="d-flex justify-content-between mt-3">
                     <button type="submit" class="btn btn-danger">
@@ -99,13 +101,18 @@
       </div>
       <div class="comment-widgets">
         <!-- Comentario -->
-        @foreach($viewData['comments'] as $comment)
+        @foreach($viewData['comments']->reverse() as $comment)
         <div class="d-flex flex-row comment-row m-t-0">
-          <div class="comment-text w-100">
+          <div class="comment-text w-100" style="margin: 10px;padding: 5px; background-color: #E8E5DA">
             <h6 class="font-medium">{{ $comment->getUserName() }}</h6>
             <span class="m-b-15 d-block">{{ $comment->getComment() }}</span>
-            <div class="comment-footer"> <span class="text-muted float-right">{{ $comment->getCreatedAt() }}</span>
-              <a href="{{ route('comment.delete') }}"><button type="button" class="btn btn-danger btn-sm">{{__('Delete')}}</button></a>
+            <div class="comment-footer">
+              <span class="text-muted float-right">{{ $comment->getCreatedAt() }}</span>
+              @if(Auth::id() == $comment->getUserId())
+              <a href="{{ route('comment.delete', ['id'=> $comment->getId()]) }}">
+                <button type="button" class="btn btn-danger btn-sm">{{__('Delete')}}</button>
+              </a>
+              @endif
             </div>
           </div>
         </div>
