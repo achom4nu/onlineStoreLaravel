@@ -77,22 +77,7 @@
   </div>
   <!-- footer -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-  <script type="text/javascript">
-    tinymce.init({
-      selector: 'textarea#comment',
-          plugins: [
-            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'help', 'wordcount'
-          ],
-          toolbar: 'undo redo | blocks | ' +
-            'bold italic backcolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
-          content_style: 'body { font-family: Lato; font-size:16px }'
-      });
-  </script>
+  
 </body>
 
 </html>

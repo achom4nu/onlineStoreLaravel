@@ -17,11 +17,11 @@ class CommentController extends Controller
 
         Comment::create([
             'username' => $auth->name, 
-            'comment' => $request->input('comment'), 
+            'comment' => strip_tags($request->input('comment')), 
             'product_id' => $request->input('productId'), 
             'user_id' => $auth->id
         ]);
-
+        
         return redirect()->back();
     }
 

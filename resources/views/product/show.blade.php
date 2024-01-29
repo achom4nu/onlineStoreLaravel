@@ -10,7 +10,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">
-          {{ $viewData["product"]->getName() }} (${{ $viewData["product"]->getPrice() }})
+          {{ $viewData["product"]->getName() }} ({{ $viewData["product"]->getPrice() }}€)
         </h5>
         <p class="card-text">{{ $viewData["product"]->getDescription() }}</p>
         <p class="card-text">
@@ -40,7 +40,7 @@
 <a class="btn btn-primary" href="{{ route('login') }}">{{__('Login')}}</a>
 <a class="btn btn-primary" href="{{ route('register') }}">{{__('Register')}}</a>
 @else
-<section style="background-color: #d94125;">
+<section style="background-color: #144e6a;">
   <div class="container my-5 py-5 text-dark">
     <div class="row d-flex justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-6">
@@ -70,6 +70,22 @@
                   @csrf
                   <div class="form-outline">
                     <textarea class="form-control" class="comment" id="comment" name="comment" rows="4"></textarea>
+                    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    tinymce.init({
+                                        selector: 'textarea#comment',
+                                        plugins: 'code table lists',
+                                        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+                                    });
+                                });
+ 
+                                // Add a function to update the textarea before form submission
+                                function updateTextarea() {
+                                    var content = tinymce.get('comment').getContent();
+                                    document.getElementById('comment').value = content;
+                                }
+                            </script>
                     <label class="form-label" for="textAreaExample">{{__('What is your view?')}}</label>
                   </div>
                   <!--<input type="hidden" name="userId" value="{{ Auth::id() }}">
@@ -96,9 +112,11 @@
 <div class="row d-flex justify-content-center mt-100 mb-100">
   <div class="col-lg-6">
     <div class="card">
+      <!--@if($viewData['comments'] !== "undefined")-->
       <div class="card-body text-center">
         <h4 class="card-title">{{__('Latest Comments')}}</h4>
       </div>
+      <!--@endif-->
       <div class="comment-widgets">
         <!-- Comentario -->
         @foreach($viewData['comments']->reverse() as $comment)

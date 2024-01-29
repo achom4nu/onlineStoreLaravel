@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,6 +47,7 @@ class AdminProductController extends Controller
 
     public function delete($id)
     {
+        Comment::where('product_id', $id)->delete();
         Product::destroy($id);
         return back();
     }
