@@ -70,7 +70,7 @@
                   @csrf
                   <div class="form-outline">
                     <textarea class="form-control" class="comment" id="comment" name="comment" rows="4"></textarea>
-                    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+                    <script src="https://cdn.tiny.cloud/1/2qf69q3e0wyeoasohxq6abyam4gtqg4cgrjs13inr2i3xzug/tinymce/5/tinymce.min.js"></script>
                             <script>
                                 document.addEventListener("DOMContentLoaded", function() {
                                     tinymce.init({
